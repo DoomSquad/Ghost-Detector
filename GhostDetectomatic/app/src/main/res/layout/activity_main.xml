@@ -9,25 +9,37 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:src="@mipmap/blank" />
 
-     <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:src="@mipmap/radarglass"
-         android:alpha="0.6"/>
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:src="@mipmap/radarglass"
+        android:alpha="0.6"/>
 
     <ImageView
-        android:layout_width="418dp"
-        android:layout_height="234dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@mipmap/radar" />
+
+    <ImageView
+        android:layout_width="320dp"
+        android:layout_height="300dp"
         android:src="@mipmap/radaranimation"
         android:id="@+id/radar"
-        android:layout_gravity="center" />
-   <ImageView
-        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal|top" />
+
+
+    <Button
+        android:layout_width="256dp"
         android:layout_height="wrap_content"
-        android:src="@mipmap/radar" />
+        android:text="SCAN"
+        android:id="@+id/scan"
+        android:layout_gravity="center_horizontal|bottom"
+        android:textSize="30dp"
+        android:background="@color/material_grey_600" />
+
+
 
 </FrameLayout>
