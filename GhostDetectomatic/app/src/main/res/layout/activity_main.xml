@@ -38,7 +38,8 @@
         android:id="@+id/scan"
         android:layout_gravity="center_horizontal|bottom"
         android:textSize="30dp"
-        android:background="@color/material_grey_600" />
+        android:background="@color/material_grey_600"
+        android:onClick="takePhoto"/>
 
 
 

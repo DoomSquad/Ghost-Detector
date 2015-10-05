@@ -1,6 +1,7 @@
 package com.example.doomsquad.ghostdetectomatic;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,9 +15,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private ImageView radar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +29,13 @@ public class MainActivity extends AppCompatActivity {
         rotate.setRepeatCount(Animation.INFINITE);
         rotate.setDuration(2000);
         radar.startAnimation(rotate);
-
-
     }
 
-
+    public void takePhoto()
+    {
+        Intent intent = new Intent(this, CaptureActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
