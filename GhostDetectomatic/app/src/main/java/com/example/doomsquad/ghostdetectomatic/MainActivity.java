@@ -2,6 +2,11 @@ package com.example.doomsquad.ghostdetectomatic;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -12,15 +17,35 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView radar;
+    private Random detect;
+    private Boolean detecting;
+    private Canvas radarScreen;
+    private int radW;
+    private int radH;
+    private static Bitmap bt;
+    private static SensorManager smg;
+    private static Sensor sense;
+    //private static final Bitmap.Config.ARGB_8888 argb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //initializing
+        detecting = true;
+        radH = 270;
+        radW = 300;
+        bt.createBitmap(radW, radH, Bitmap.Config.ARGB_8888);
+        radarScreen = new Canvas(bt);
+        smg = (SensorManager)this.getSystemService(SENSOR_SERVICE);
+        sense = smg.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         //animate radar
         radar = (ImageView)findViewById(R.id.radar);
@@ -29,12 +54,31 @@ public class MainActivity extends AppCompatActivity {
         rotate.setRepeatCount(Animation.INFINITE);
         rotate.setDuration(2000);
         radar.startAnimation(rotate);
+
+        //start sensor
+        //smg.registerListener(this, sense, SensorManager.SENSOR_DELAY_NORMAL);
+
     }
 
     public void takePhoto()
     {
+        detecting = true;
         Intent intent = new Intent(this, CaptureActivity.class);
         startActivity(intent);
+    }
+    public void Radar(Canvas c)
+    {
+        detect = new Random();
+        int search = detect.nextInt(100);
+        Paint color = new Paint();
+        color.setARGB(70, 0, 255, 0);
+        if(search >= 70){
+            int circX = detect.nextInt(radW);
+            int circY = detect.nextInt(radH);
+            c.drawCircle(circX, circY, 10, color);
+            detecting = false;
+        }
+
     }
 
     @Override
