@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         radarScreen = new Canvas(bt);
         smg = (SensorManager)this.getSystemService(SENSOR_SERVICE);
         sense = smg.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        //smg.registerListener(this, sense, SensorManager.SENSOR_DELAY_NORMAL);
 
         //animate radar
         radar = (ImageView)findViewById(R.id.radar);
@@ -55,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
         rotate.setDuration(2000);
         radar.startAnimation(rotate);
 
-        //start sensor
-        //smg.registerListener(this, sense, SensorManager.SENSOR_DELAY_NORMAL);
 
     }
 
@@ -102,4 +102,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    //@Override
 }
